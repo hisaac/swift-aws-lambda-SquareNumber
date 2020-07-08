@@ -1,14 +1,16 @@
 import AWSLambdaRuntime
-import AWSLambdaEvents
 
-struct Input: Codable {
-    let number: Double
+/// MARK: - Request, Response, and Handler
+
+struct Request: Codable {
+	let number: Double
 }
 
-struct Output: Codable {
-    let result: Double
+struct Response: Codable {
+	let result: Double
 }
 
-Lambda.run { (context, input: Input, callback: @escaping (Result<Output, Error>) -> Void) in
-    callback(.success(Output(result: input.number * input.number)))
+Lambda.run { (context, request: Request, callback: @escaping (Result<Response, Error>) -> Void) in
+	context.logger.info("Request received!")
+	callback(.success(Response(result: request.number * request.number)))
 }
