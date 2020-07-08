@@ -1,4 +1,5 @@
 import AWSLambdaRuntime
+import Foundation
 
 /// MARK: - Request, Response, and Handler
 
